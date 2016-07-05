@@ -45,4 +45,10 @@ class MoviesTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let movie = Movie.latestMovies[indexPath.row]
+        // TODO: fill the identifier here
+        self.performSegueWithIdentifier("", sender: movie)
+    }
 }
