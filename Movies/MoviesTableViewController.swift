@@ -13,11 +13,11 @@ class MoviesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        let nib = UINib(nibName: "MyMovieTableViewCell", bundle: nil)
+        self.tableView.registerNib(nib, forCellReuseIdentifier: "My Movie Cell")
+        
+        tableView.estimatedRowHeight = 80
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +25,9 @@ class MoviesTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        print("print: \(self.tableView.frame)")
+    }
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -33,22 +36,34 @@ class MoviesTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Movie.latestMovies.count
+        return 30
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Movie Cell", forIndexPath: indexPath)
-        let movie = Movie.latestMovies[indexPath.row]
-        cell.textLabel?.text = movie.name
-        cell.textLabel?.numberOfLines = 0
-        cell.imageView?.image = movie.image
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("My Movie Cell", forIndexPath: indexPath) as! MyMovieTableViewCell
+        let movie = Movie.latestMovies[indexPath.row%3]
+
+        cell.movieImageView.image = movie.image
+        cell.nameLabel.text = movie.name
+        cell.descriptionLabel.text = movie.description
+        
+//        cell.textLabel?.text = movie.name
+//        cell.textLabel?.numberOfLines = 0
+//        cell.imageView?.image = movie.image
 
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let movie = Movie.latestMovies[indexPath.row]
-        // TODO: fill the identifier here
-        self.performSegueWithIdentifier("", sender: movie)
+        self.performSegueWithIdentifier("Movies Table To Detail", sender: movie)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Movies Table To Detail" {
+            let detailVC = segue.destinationViewController as! DetailViewController
+            detailVC.movie = sender as? Movie
+        }
     }
 }

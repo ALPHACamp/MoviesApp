@@ -14,6 +14,10 @@
 		D34AB1CC1D2BB9C600906121 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D34AB1CA1D2BB9C600906121 /* LaunchScreen.storyboard */; };
 		D34AB1D41D2BCA6F00906121 /* MoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34AB1D31D2BCA6F00906121 /* MoviesTableViewController.swift */; };
 		D34AB1D61D2BCABD00906121 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34AB1D51D2BCABD00906121 /* Movie.swift */; };
+		D34AB1DA1D2BD89300906121 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34AB1D91D2BD89300906121 /* DetailViewController.swift */; };
+		D35A08451D2E888A00B6B866 /* MyMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35A08431D2E888A00B6B866 /* MyMovieTableViewCell.swift */; };
+		D35A08461D2E888A00B6B866 /* MyMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D35A08441D2E888A00B6B866 /* MyMovieTableViewCell.xib */; };
+		D39D42191D30A91E0072EE6A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D39D42181D30A91E0072EE6A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		D34AB1CD1D2BB9C600906121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D34AB1D31D2BCA6F00906121 /* MoviesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewController.swift; sourceTree = "<group>"; };
 		D34AB1D51D2BCABD00906121 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		D34AB1D91D2BD89300906121 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D35A08431D2E888A00B6B866 /* MyMovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMovieTableViewCell.swift; sourceTree = "<group>"; };
+		D35A08441D2E888A00B6B866 /* MyMovieTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyMovieTableViewCell.xib; sourceTree = "<group>"; };
+		D39D42181D30A91E0072EE6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,10 @@
 				D34AB1CD1D2BB9C600906121 /* Info.plist */,
 				D34AB1D31D2BCA6F00906121 /* MoviesTableViewController.swift */,
 				D34AB1D51D2BCABD00906121 /* Movie.swift */,
+				D34AB1D91D2BD89300906121 /* DetailViewController.swift */,
+				D35A08431D2E888A00B6B866 /* MyMovieTableViewCell.swift */,
+				D39D42181D30A91E0072EE6A /* GoogleService-Info.plist */,
+				D35A08441D2E888A00B6B866 /* MyMovieTableViewCell.xib */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -130,6 +142,8 @@
 			files = (
 				D34AB1CC1D2BB9C600906121 /* LaunchScreen.storyboard in Resources */,
 				D34AB1C91D2BB9C600906121 /* Assets.xcassets in Resources */,
+				D39D42191D30A91E0072EE6A /* GoogleService-Info.plist in Resources */,
+				D35A08461D2E888A00B6B866 /* MyMovieTableViewCell.xib in Resources */,
 				D34AB1C71D2BB9C600906121 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,8 +155,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D35A08451D2E888A00B6B866 /* MyMovieTableViewCell.swift in Sources */,
 				D34AB1D41D2BCA6F00906121 /* MoviesTableViewController.swift in Sources */,
 				D34AB1C41D2BB9C600906121 /* ViewController.swift in Sources */,
+				D34AB1DA1D2BD89300906121 /* DetailViewController.swift in Sources */,
 				D34AB1D61D2BCABD00906121 /* Movie.swift in Sources */,
 				D34AB1C21D2BB9C600906121 /* AppDelegate.swift in Sources */,
 			);
@@ -296,6 +312,7 @@
 				D34AB1D21D2BB9C600906121 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
