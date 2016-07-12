@@ -7,11 +7,14 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseDatabase
 
 class MoviesTableViewController: UITableViewController {
     
+    // TODO: 1. declaring the following properties
     var ref: FIRDatabaseReference!
+    private var _refHandle: FIRDatabaseHandle!
+    var movies: [FIRDataSnapshot]! = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,24 +23,28 @@ class MoviesTableViewController: UITableViewController {
         self.tableView.registerNib(nib, forCellReuseIdentifier: "My Movie Cell")
         
         tableView.estimatedRowHeight = 80
+        
+        // TODO: 2. connect to database
+        configureDatabase()
+    }
+    
+    // TODO: 3. remove the observer in deinit
+    deinit {
+        self.ref.child("movies").removeObserverWithHandle(_refHandle)
     }
     
     func configureDatabase() {
         ref = FIRDatabase.database().reference()
         // Listen for new messages in the Firebase database
-        _refHandle = self.ref.child("messages").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
-            self.messages.append(snapshot)
-            self.clientTable.insertRowsAtIndexPaths([NSIndexPath(forRow: self.messages.count-1, inSection: 0)], withRowAnimation: .Automatic)
+        _refHandle = self.ref.child("movies").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
+            self.movies.append(snapshot)
+            self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.movies.count-1, inSection: 0)], withRowAnimation: .Automatic)
         })
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        print("print: \(self.tableView.frame)")
     }
     // MARK: - Table view data source
 
@@ -46,7 +53,13 @@ class MoviesTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Movie.latestMovies.count
+        // TODO: 4. read movies from FB for section 0,
+        switch section {
+        case 0:
+            return movies.count
+        default:
+            return Movie.latestMovies.count
+        }
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -84,11 +97,15 @@ class MoviesTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("Movie Cell", forIndexPath: indexPath)
             
-            cell.textLabel?.text = movie.name
-            cell.textLabel?.numberOfLines = 0
-            cell.imageView?.image = movie.image
+            // TODO: 5. set cell accrodingly
+            let cell = tableView.dequeueReusableCellWithIdentifier("Movie Cell", forIndexPath: indexPath)
+            let movieSnapshot: FIRDataSnapshot! = self.movies[indexPath.row]
+            let movie = movieSnapshot.value as! Dictionary<String, String>
+            let name = movie["name"] as String!
+            let imageName = movie["imageName"] as String!
+            cell.textLabel?.text = name
+            cell.imageView?.image = UIImage(named: imageName)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("My Movie Cell", forIndexPath: indexPath) as! MyMovieTableViewCell
