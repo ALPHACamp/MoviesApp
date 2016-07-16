@@ -114,10 +114,10 @@
             </objects>
             <point key="canvasLocation" x="-328" y="1007"/>
         </scene>
-        <!--Item 2-->
+        <!--New Movie-->
         <scene sceneID="M6Y-1D-66J">
             <objects>
-                <viewController id="Wbz-0A-nDC" sceneMemberID="viewController">
+                <viewController id="Wbz-0A-nDC" customClass="NewMovieViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xr8-1Q-APM"/>
                         <viewControllerLayoutGuide type="bottom" id="35S-l9-krE"/>
@@ -125,9 +125,66 @@
                     <view key="view" contentMode="scaleToFill" id="Ia7-O7-Oz0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="image name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VCf-Ra-zCj">
+                                <rect key="frame" x="180" y="20" width="240" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Mwn-rM-VHH"/>
+                                    <constraint firstAttribute="height" constant="30" id="wil-4c-8aJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MTV-ct-R1w">
+                                <rect key="frame" x="180" y="64" width="240" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="RhU-mf-YGs"/>
+                                    <constraint firstAttribute="height" constant="30" id="pHM-MN-uIb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yBD-9F-JPD">
+                                <rect key="frame" x="180" y="102" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="ASI-ng-9Ic"/>
+                                    <constraint firstAttribute="height" constant="128" id="iQa-a7-Fgm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CN0-m2-2Hc">
+                                <rect key="frame" x="180" y="238" width="240" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Nv1-Qi-6Cw"/>
+                                    <constraint firstAttribute="width" constant="240" id="hYV-sI-R6P"/>
+                                </constraints>
+                                <state key="normal" title="Create new movie"/>
+                                <connections>
+                                    <action selector="createNewMovie:" destination="Wbz-0A-nDC" eventType="touchUpInside" id="qki-ay-tmw"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VCf-Ra-zCj" firstAttribute="centerX" secondItem="Ia7-O7-Oz0" secondAttribute="centerX" id="0I9-76-HdA"/>
+                            <constraint firstItem="yBD-9F-JPD" firstAttribute="centerX" secondItem="Ia7-O7-Oz0" secondAttribute="centerX" id="5fB-Qw-7xx"/>
+                            <constraint firstItem="CN0-m2-2Hc" firstAttribute="top" secondItem="yBD-9F-JPD" secondAttribute="bottom" constant="8" id="7sO-CF-tzi"/>
+                            <constraint firstItem="VCf-Ra-zCj" firstAttribute="top" secondItem="xr8-1Q-APM" secondAttribute="bottom" id="Gg5-Dd-TfF"/>
+                            <constraint firstItem="MTV-ct-R1w" firstAttribute="top" secondItem="VCf-Ra-zCj" secondAttribute="bottom" constant="14" id="N7A-Yo-7bk"/>
+                            <constraint firstItem="yBD-9F-JPD" firstAttribute="top" secondItem="MTV-ct-R1w" secondAttribute="bottom" constant="8" id="Pah-hu-KaP"/>
+                            <constraint firstItem="CN0-m2-2Hc" firstAttribute="centerX" secondItem="Ia7-O7-Oz0" secondAttribute="centerX" id="qde-at-xAx"/>
+                            <constraint firstItem="MTV-ct-R1w" firstAttribute="centerX" secondItem="Ia7-O7-Oz0" secondAttribute="centerX" id="vvu-ue-kFJ"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="78e-cG-qA9"/>
+                    <tabBarItem key="tabBarItem" title="New Movie" id="78e-cG-qA9"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="yBD-9F-JPD" id="Usu-ws-XTx"/>
+                        <outlet property="imageNameTextField" destination="VCf-Ra-zCj" id="qU5-BG-9g9"/>
+                        <outlet property="nameTextField" destination="MTV-ct-R1w" id="ZPy-rz-yvp"/>
+                        <outlet property="newMovieButton" destination="CN0-m2-2Hc" id="C8S-X4-hzx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sk6-xf-YQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

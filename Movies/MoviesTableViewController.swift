@@ -93,8 +93,6 @@ class MoviesTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let movie = Movie.latestMovies[indexPath.row]
-        
         switch indexPath.section {
         case 0:
             
@@ -108,6 +106,7 @@ class MoviesTableViewController: UITableViewController {
             cell.imageView?.image = UIImage(named: imageName)
             return cell
         case 1:
+            let movie = Movie.latestMovies[indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier("My Movie Cell", forIndexPath: indexPath) as! MyMovieTableViewCell
             
             cell.movieImageView.image = movie.image
@@ -120,14 +119,30 @@ class MoviesTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let movie = Movie.latestMovies[indexPath.row]
-        self.performSegueWithIdentifier("Movies Table To Detail", sender: movie)
+        switch indexPath.section {
+        case 0:
+            let movie = movies[indexPath.row]
+            self.performSegueWithIdentifier("Movies Table To Detail", sender: movie)
+        default:
+            let movie = Movie.latestMovies[indexPath.row]
+            self.performSegueWithIdentifier("Movies Table To Detail", sender: movie)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Movies Table To Detail" {
             let detailVC = segue.destinationViewController as! DetailViewController
-            detailVC.movie = sender as? Movie
+            if let movieInfo = sender {
+                if movieInfo.isKindOfClass(Movie) {
+                    detailVC.movie = movieInfo as? Movie
+                } else if movieInfo.isKindOfClass(FIRDataSnapshot) {
+                    let movieSnapshot = movieInfo as! FIRDataSnapshot
+                    let movieSnapshotValue = movieSnapshot.value as! Dictionary<String, String>
+                    let movie = Movie(imageName: movieSnapshotValue["imageName"]!, name: movieSnapshotValue["name"]!, description: movieSnapshotValue["description"]!)
+                    detailVC.movie = movie
+                }
+            }
+
         }
     }
 }

@@ -15,6 +15,7 @@
 		D34AB1D41D2BCA6F00906121 /* MoviesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34AB1D31D2BCA6F00906121 /* MoviesTableViewController.swift */; };
 		D34AB1D61D2BCABD00906121 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34AB1D51D2BCABD00906121 /* Movie.swift */; };
 		D34AB1DA1D2BD89300906121 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34AB1D91D2BD89300906121 /* DetailViewController.swift */; };
+		D34BC7711D3760CF00EA7463 /* NewMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34BC7701D3760CF00EA7463 /* NewMovieViewController.swift */; };
 		D35A08451D2E888A00B6B866 /* MyMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35A08431D2E888A00B6B866 /* MyMovieTableViewCell.swift */; };
 		D35A08461D2E888A00B6B866 /* MyMovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D35A08441D2E888A00B6B866 /* MyMovieTableViewCell.xib */; };
 		D39D42191D30A91E0072EE6A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D39D42181D30A91E0072EE6A /* GoogleService-Info.plist */; };
@@ -35,6 +36,7 @@
 		D34AB1D31D2BCA6F00906121 /* MoviesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesTableViewController.swift; sourceTree = "<group>"; };
 		D34AB1D51D2BCABD00906121 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		D34AB1D91D2BD89300906121 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D34BC7701D3760CF00EA7463 /* NewMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMovieViewController.swift; sourceTree = "<group>"; };
 		D35A08431D2E888A00B6B866 /* MyMovieTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMovieTableViewCell.swift; sourceTree = "<group>"; };
 		D35A08441D2E888A00B6B866 /* MyMovieTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyMovieTableViewCell.xib; sourceTree = "<group>"; };
 		D39D42181D30A91E0072EE6A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				D35A08431D2E888A00B6B866 /* MyMovieTableViewCell.swift */,
 				D39D42181D30A91E0072EE6A /* GoogleService-Info.plist */,
 				D35A08441D2E888A00B6B866 /* MyMovieTableViewCell.xib */,
+				D34BC7701D3760CF00EA7463 /* NewMovieViewController.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				D34AB1C41D2BB9C600906121 /* ViewController.swift in Sources */,
 				D34AB1DA1D2BD89300906121 /* DetailViewController.swift in Sources */,
 				D34AB1D61D2BCABD00906121 /* Movie.swift in Sources */,
+				D34BC7711D3760CF00EA7463 /* NewMovieViewController.swift in Sources */,
 				D34AB1C21D2BB9C600906121 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
