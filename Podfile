@@ -9,4 +9,5 @@ target 'Movies' do
 
   pod 'Firebase'
   pod 'Firebase/Database'
+  pod 'FirebaseAuth'
 end

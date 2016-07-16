@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class NewMovieViewController: UIViewController {
     
@@ -32,5 +33,14 @@ class NewMovieViewController: UIViewController {
         super.viewDidLoad()
         ref = FIRDatabase.database().reference()
         // Do any additional setup after loading the view.
+    }
+    
+    
+    @IBAction func signOut(sender: AnyObject) {
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: \(signOutError)")
+        }
     }
 }
