@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKShareKit
 
 class DetailViewController: UIViewController {
 
@@ -16,6 +17,9 @@ class DetailViewController: UIViewController {
     
     var movie: Movie?
     
+    @IBOutlet weak var FBShareButton: FBSDKShareButton!
+    
+    @IBOutlet weak var FBSendButton: FBSDKSendButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         movieImageView.image = movie?.image
@@ -23,6 +27,17 @@ class DetailViewController: UIViewController {
         descriptionLabel.text = movie?.description
         
         self.title = movie?.name
+        
+        let content = FBSDKShareLinkContent()
+        content.contentURL = NSURL(string: "http://stackoverflow.com/questions/26045666/facebook-share-dialog-doesnt-work-when-href-parameter-is-a-variable")
+        content.contentTitle = movie?.name
+        content.contentDescription = movie?.description
+        self.FBShareButton.shareContent = content
+        self.FBSendButton.shareContent = content
+        if !self.FBSendButton.enabled {
+            print("user doesn't install the messenger app!")
+            self.FBSendButton.hidden = true
+        }
     }
 
     override func didReceiveMemoryWarning() {

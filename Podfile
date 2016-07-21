@@ -10,4 +10,8 @@ target 'Movies' do
   pod 'Firebase'
   pod 'Firebase/Database'
   pod 'FirebaseAuth'
+
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
 end

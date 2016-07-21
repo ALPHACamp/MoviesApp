@@ -8,12 +8,14 @@
 
 import UIKit
 import FirebaseAuth
+import FBSDKLoginKit
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, FBSDKLoginButtonDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var FBLoginButton: FBSDKLoginButton!
     @IBAction func signIn(sender: AnyObject) {
         let email = emailTextField.text
         let password = passwordField.text
@@ -66,10 +68,47 @@ class SignInViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.FBLoginButton.delegate = self
+        self.FBLoginButton.readPermissions = ["email"]
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if FIRAuth.auth()?.currentUser != nil {
             self.performSegueWithIdentifier("SignIn To Main", sender: nil)
         }
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+
+        let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+        FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+            let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: result.token.tokenString, version: nil, HTTPMethod: "GET")
+            req.startWithCompletionHandler({ (connection, graphResult, error : NSError!) -> Void in
+                if(error == nil)
+                {
+                    print("result \(graphResult)")
+                    user?.updateEmail(graphResult["email"] as! String, completion: nil)
+                    if let user = user {
+                        let reqeust = user.profileChangeRequest()
+                        reqeust.displayName = graphResult["name"] as? String
+                        reqeust.commitChangesWithCompletion(nil)
+                    }
+                }
+                else {
+                    print("error \(error)")
+                }
+            })
+        }
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("logged out!")
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Oyk-Mb-mQd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eMz-ha-Q4x">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -77,18 +77,35 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdU-1w-tPm" customClass="FBSDKShareButton">
+                                <rect key="frame" x="374" y="410" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0l-Fa-Pbp" customClass="FBSDKSendButton">
+                                <rect key="frame" x="320" y="410" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ZM1-EE-50P"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HPH-6K-y8q" firstAttribute="top" secondItem="zVq-FG-nWq" secondAttribute="bottom" constant="8" id="5NL-kt-pUx"/>
                             <constraint firstItem="zVq-FG-nWq" firstAttribute="top" secondItem="6ks-F8-gi4" secondAttribute="bottom" constant="21" id="Hil-iJ-fJr"/>
+                            <constraint firstItem="RdU-1w-tPm" firstAttribute="top" secondItem="HPH-6K-y8q" secondAttribute="bottom" constant="27" id="K8a-cg-GZu"/>
                             <constraint firstItem="zVq-FG-nWq" firstAttribute="centerX" secondItem="6yk-Ox-mZC" secondAttribute="centerX" id="OxA-AU-h5B"/>
+                            <constraint firstItem="a0l-Fa-Pbp" firstAttribute="top" secondItem="HPH-6K-y8q" secondAttribute="bottom" constant="27" id="Rjo-V1-ZAD"/>
+                            <constraint firstItem="RdU-1w-tPm" firstAttribute="leading" secondItem="a0l-Fa-Pbp" secondAttribute="trailing" constant="8" id="Y3k-yD-hJG"/>
                             <constraint firstItem="HPH-6K-y8q" firstAttribute="centerX" secondItem="6yk-Ox-mZC" secondAttribute="centerX" id="aQd-2H-gsV"/>
                             <constraint firstItem="6ks-F8-gi4" firstAttribute="centerX" secondItem="6yk-Ox-mZC" secondAttribute="centerX" id="amb-Eu-e95"/>
                             <constraint firstItem="6ks-F8-gi4" firstAttribute="top" secondItem="n31-GN-O2j" secondAttribute="bottom" constant="8" id="phi-JK-egE"/>
+                            <constraint firstItem="RdU-1w-tPm" firstAttribute="trailing" secondItem="6ks-F8-gi4" secondAttribute="trailing" id="rCN-Fc-N33"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="FBSendButton" destination="a0l-Fa-Pbp" id="kDX-Yk-KQv"/>
+                        <outlet property="FBShareButton" destination="RdU-1w-tPm" id="bFl-ck-RMA"/>
                         <outlet property="descriptionLabel" destination="HPH-6K-y8q" id="nVv-5A-Ybm"/>
                         <outlet property="movieImageView" destination="6ks-F8-gi4" id="Ewq-Uy-xkC"/>
                         <outlet property="nameLabel" destination="zVq-FG-nWq" id="03b-mv-7Sy"/>
@@ -200,7 +217,7 @@
             </objects>
             <point key="canvasLocation" x="-328" y="1779"/>
         </scene>
-        <!--Sign In View Controller-->
+        <!--Delegate-->
         <scene sceneID="kuc-Sp-cKw">
             <objects>
                 <viewController id="Oyk-Mb-mQd" customClass="SignInViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
@@ -270,9 +287,16 @@
                                     <constraint firstAttribute="width" constant="160" id="bF9-Yg-f3h"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWO-Zf-itG" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="297" y="361" width="108" height="30"/>
+                                <state key="normal" title="Facebook Login"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Oyk-Mb-mQd" id="QLf-ZH-WOx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -291,6 +315,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="FBLoginButton" destination="qWO-Zf-itG" id="mn1-g6-wav"/>
                         <outlet property="emailTextField" destination="VZW-cm-QfI" id="RAL-Sd-11o"/>
                         <outlet property="passwordField" destination="Lpg-0Y-3G3" id="LWL-9Z-cuX"/>
                         <segue destination="eMz-ha-Q4x" kind="presentation" identifier="SignIn To Main" id="Gqf-Ms-nPo"/>
