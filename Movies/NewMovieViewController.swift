@@ -24,8 +24,10 @@ class NewMovieViewController: UIViewController {
         let name = nameTextField.text
         let description = descriptionTextView.text
 
-        let movieInfo = ["name": name, "imageName": imageName, "description": description]
-        
+        var movieInfo = ["name": name, "imageName": imageName, "description": description]
+        if let user = FIRAuth.auth()?.currentUser {
+            movieInfo["createdBy"] = user.uid
+        }
         self.ref.child("movies").childByAutoId().setValue(movieInfo)
         newMovieButton.enabled = false
     }

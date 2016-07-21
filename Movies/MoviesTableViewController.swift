@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class MoviesTableViewController: UITableViewController {
     
@@ -36,10 +37,17 @@ class MoviesTableViewController: UITableViewController {
     func configureDatabase() {
         ref = FIRDatabase.database().reference()
         // Listen for new messages in the Firebase database
-        _refHandle = self.ref.child("movies").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
-            self.movies.append(snapshot)
-            self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.movies.count-1, inSection: 0)], withRowAnimation: .Automatic)
-        })
+        if let user = FIRAuth.auth()?.currentUser {
+            _refHandle = self.ref.child("movies").queryOrderedByChild("createdBy").queryEqualToValue(user.uid).observeEventType(.ChildAdded, withBlock: { (snapshot) in
+                    self.movies.append(snapshot)
+                    self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.movies.count-1, inSection: 0)], withRowAnimation: .Automatic)
+            })
+        } else {
+            _refHandle = self.ref.child("movies").observeEventType(.ChildAdded, withBlock: { (snapshot) -> Void in
+                self.movies.append(snapshot)
+                self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.movies.count-1, inSection: 0)], withRowAnimation: .Automatic)
+            })
+        }
     }
     
     override func didReceiveMemoryWarning() {
